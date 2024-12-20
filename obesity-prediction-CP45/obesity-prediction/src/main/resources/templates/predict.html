@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediksi Tingkat Obesitas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Prediksi Tingkat Obesitas</h1>
+<form method="post" th:action="@{/predict/submit}" th:object="${obesityData}">
+    <label>Gender:</label>
+    <input type="text" th:field="*{gender}" placeholder="Male / Female" required />
+
+    <label>Age:</label>
+    <input type="number" th:field="*{age}" placeholder="Contoh: 25" required />
+
+    <label>Height (cm):</label>
+    <input type="number" step="0.01" th:field="*{height}" placeholder="Contoh: 175" required />
+
+    <label>Weight (kg):</label>
+    <input type="number" step="0.01" th:field="*{weight}" placeholder="Contoh: 70" required />
+
+    <label>Family History of Overweight:</label>
+    <input type="text" th:field="*{familyHistoryWithOverweight}" placeholder="yes / no" required />
+
+    <label>Frequent Consumption of High-Caloric Food:</label>
+    <input type="text" th:field="*{favc}" placeholder="yes / no" required />
+
+    <label>Vegetable Consumption Frequency:</label>
+    <input type="number" step="0.1" th:field="*{fcvc}" placeholder="Contoh: 2.5" required />
+
+    <label>Number of Main Meals:</label>
+    <input type="number" step="0.1" th:field="*{ncp}" placeholder="Contoh: 3" required />
+
+    <label>Consumption of Food Between Meals:</label>
+    <input type="text" th:field="*{caec}" placeholder="Sometimes / Frequently / no" required />
+
+    <label>Smoke:</label>
+    <input type="text" th:field="*{smoke}" placeholder="yes / no" required />
+
+    <label>Daily Water Consumption (Liters):</label>
+    <input type="number" step="0.1" th:field="*{ch2o}" placeholder="Contoh: 2" required />
+
+    <label>Calories Monitoring:</label>
+    <input type="text" th:field="*{scc}" placeholder="yes / no" required />
+
+    <label>Physical Activity Frequency:</label>
+    <input type="number" step="0.1" th:field="*{faf}" placeholder="Contoh: 1" required />
+
+    <label>Time Using Technology Devices:</label>
+    <input type="number" step="0.1" th:field="*{tue}" placeholder="Contoh: 2" required />
+
+    <label>Consumption of Alcohol:</label>
+    <input type="text" th:field="*{calc}" placeholder="Sometimes / Frequently / no" required />
+
+    <label>Transportation Used:</label>
+    <input type="text" th:field="*{mtrans}" placeholder="Public_Transportation / Bike / Walking" required />
+
+    <button type="submit">Prediksi</button>
+</form>
+
+<h2>Hasil Prediksi:</h2>
+<p th:text="${predictionResult}">Hasil prediksi akan ditampilkan di sini...</p>
+</body>
+</html>
